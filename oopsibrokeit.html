@@ -37,12 +37,26 @@
             letter-spacing: 2px;
         }
 
-        #hand {
-            position: absolute;
-            font-size: 32px;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-        }
+      #hand {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+
+    display: grid;
+    grid-template-columns: repeat(30, 8px);
+    grid-template-rows: repeat(30, 8px);
+
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.pixel {
+    width: 8px;
+    height: 8px;
+    font-size: 8px;
+    line-height: 8px;
+    overflow: hidden;
+}
     </style>
 </head>
 
@@ -51,7 +65,7 @@
     <div id="game">
         <div id="title">OOPS, I BROKE IT</div>
 
-        <div id="hand">🖐️</div>
+     <div id="hand"></div>
     </div>
 
     <script>
