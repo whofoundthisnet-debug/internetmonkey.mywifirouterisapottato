@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internet Board</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f1f1f1;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* The chain */
+        #chain {
+            font-size: 70px;
+            cursor: grab;
+            user-select: none;
+            touch-action: none;
+            position: relative;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        #chain:active {
+            cursor: grabbing;
+        }
+
+        #hint {
+            color: #777;
+            margin-top: 5px;
+        }
+
+        /* The board */
+        #board {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+
+            transform: translateY(-500px);
+            opacity: 0;
+            transition: transform 0.7s ease, opacity 0.7s ease;
+        }
+
+        #board.open {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        textarea {
+            width: 90%;
+            max-width: 600px;
+            height: 100px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 10px;
+            background: #222;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #comments {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .comment {
+            background: #f1f1f1;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 10px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="chain">⛓️</div>
+
+    <div id="hint">
+        Pull the chain.
+    </div>
+
+    <div id="board">
+
+        <h1>INTERNET BOARD</h1>
+
+        <p>Leave something for the InternetMonkey.</p>
+
+        <textarea id="commentInput"
+            placeholder="Write a comment..."></textarea>
+
+        <br>
+
+        <button id="postButton">
+            POST COMMENT
+        </button>
+
+        <div id="comments"></div>
+
+    </div>
+
+    <script>
+
+        const chain = document.getElementById("chain");
+        const board = document.getElementById("board");
+        const input = document.getElementById("commentInput");
+        const postButton = document.getElementById("postButton");
+        const comments = document.getElementById("comments");
+
+        let pulling = false;
+        let startY = 0;
+        let pullDistance = 0;
+
+        chain.addEventListener("pointerdown", function(event) {
+
+            pulling = true;
+            startY = event.clientY;
+
+            chain.setPointerCapture(event.pointerId);
+
+        });
+
+        chain.addEventListener("pointermove", function(event) {
+
+            if (!pulling) return;
+
+            const distance = event.clientY - startY;
+
+            if (distance > 0) {
+
+                pullDistance = Math.min(distance, 300);
+
+                chain.style.transform =
+                    `translateY(${pullDistance}px)`;
+
+            }
+
+        });
+
+        chain.addEventListener("pointerup", function(event) {
+
+            if (!pulling) return;
+
+            pulling = false;
+
+            if (pullDistance > 120) {
+
+                board.classList.add("open");
+                document.getElementById("hint").textContent =
+                    "The Internet Board is open.";
+
+            }
+
+            chain.style.transform = "";
+            pullDistance = 0;
+
+        });
+
+        postButton.addEventListener("click", function() {
+
+            const text = input.value.trim();
+
+            if (text === "") return;
+
+            const comment = document.createElement("div");
+
+            comment.className = "comment";
+            comment.textContent = text;
+
+            comments.appendChild(comment);
+
+            input.value = "";
+
+        });
+
+    </script>
+
+</body>
+</html>
