@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Developer Search</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #111;
+            color: #eee;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        .search {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px;
+            background: #222;
+            border: 1px solid #555;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .history {
+            margin-top: 30px;
+        }
+
+        .history-item {
+            background: #1d1d1d;
+            border: 1px solid #333;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .history-item:hover {
+            background: #292929;
+        }
+
+        .warning {
+            color: #777;
+            font-size: 13px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Developer Search</h1>
+
+    <input
+        class="search"
+        type="text"
+        placeholder="Search..."
+    >
+
+    <div class="history">
+
+        <h2>Search History</h2>
+
+        <div class="history-item"
+             onclick="window.location.href='banana.html'">
+            🍌 banana
+        </div>
+
+        <div class="history-item"
+             onclick="window.location.href='federalbanana.html'">
+            🏛️ federal banana institution
+        </div>
+
+    </div>
+
+    <p class="warning">
+        Some search history may be classified.
+    </p>
+
+</div>
+
+</body>
+</html>v
