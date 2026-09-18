@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Banana</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f4f4f4;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        #banana {
+            font-size: 120px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+
+        #banana:hover {
+            transform: scale(1.05);
+        }
+
+        #message {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🍌 BANANA</h1>
+
+    <div id="banana">🍌</div>
+
+    <div id="message">
+        Click the banana.
+    </div>
+
+    <script>
+
+        let clicks = 0;
+
+        const banana = document.getElementById("banana");
+        const message = document.getElementById("message");
+
+        banana.addEventListener("click", function() {
+
+            clicks++;
+
+            if (clicks === 1) {
+                message.textContent = "You started peeling it.";
+            }
+
+            else if (clicks === 2) {
+                banana.textContent = "🍌";
+                message.textContent = "The banana is peeled.";
+            }
+
+            else if (clicks === 3) {
+                banana.textContent = "🍌";
+                message.textContent = "You took a bite.";
+            }
+
+            else if (clicks === 4) {
+                message.textContent = "Another bite.";
+            }
+
+            else if (clicks === 5) {
+                banana.textContent = "";
+                message.textContent = "banana consumed.";
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
