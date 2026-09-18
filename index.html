@@ -1,10 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>internetmonkey.mywifirouterisapottato</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+            color: #222;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #bbb;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .monkey {
+            font-size: 80px;
+            margin: 10px;
+        }
+
+        button {
+            background: #222;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 25px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hello World!</h1>
-    <p>My website is alive.</p>
+
+    <header>
+        <h1>internetmonkey.mywifirouterisapottato</h1>
+        <p>The InternetMonkey has arrived.</p>
+    </header>
+
+    <main>
+        <div class="welcome">
+
+            <div class="monkey">🐒</div>
+
+            <h2>WELCOME TO INTERNETMONKEY</h2>
+
+            <p>
+                This website is currently under construction.
+                Unfortunately, the monkey has access to the internet.
+            </p>
+
+            <button onclick="monkeyButton()">
+                PRESS THE BUTTON
+            </button>
+
+            <div id="message"></div>
+
+        </div>
+    </main>
+
+    <script>
+        function monkeyButton() {
+            const messages = [
+                "The monkey has pressed the button.",
+                "Why did you give the monkey internet access?",
+                "The monkey is thinking.",
+                "The monkey has gained more power.",
+                "This was probably a mistake.",
+                "InternetMonkey approves.",
+                "🐒",
+                "THE MONKEY HAS DISCOVERED JAVASCRIPT."
+            ];
+
+            const randomMessage =
+                messages[Math.floor(Math.random() * messages.length)];
+
+            document.getElementById("message").textContent = randomMessage;
+        }
+    </script>
+
 </body>
 </html>
