@@ -69,12 +69,60 @@
     </div>
 
     <script>
-        const hand = document.getElementById("hand");
+      <script>
+    const hand = document.getElementById("hand");
 
-        document.addEventListener("mousemove", function(event) {
-            hand.style.left = event.clientX + "px";
-            hand.style.top = event.clientY + "px";
-        });
+    const handPattern = [
+        "..............................",
+        "..............................",
+        "..................KK..........",
+        "..................KK..........",
+        "..................KK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK..........",
+        ".................KKK.........."
+    ];
+
+    for (const row of handPattern) {
+        for (const pixelType of row) {
+            const pixel = document.createElement("div");
+            pixel.className = "pixel";
+
+            if (pixelType === "K") {
+                pixel.textContent = "⬛";
+            }
+
+            hand.appendChild(pixel);
+        }
+    }
+
+    document.addEventListener("mousemove", function(event) {
+        hand.style.left = event.clientX + "px";
+        hand.style.top = event.clientY + "px";
+    });
+</script>
     </script>
 
 </body>
