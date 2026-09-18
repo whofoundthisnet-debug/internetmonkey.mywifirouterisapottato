@@ -123,6 +123,51 @@
                 messages[Math.floor(Math.random() * messages.length)];
 
             document.getElementById("message").textContent = randomMessage;
+                        document.getElementById("message").textContent = randomMessage;
+        }
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "i") {
+                window.devCode = "i";
+                return;
+            }
+
+            if (event.key === "a" && window.devCode === "i") {
+                window.devCode = "ia";
+                return;
+            }
+
+            if (event.key === "m" && window.devCode === "ia") {
+                window.devCode = "iam";
+                return;
+            }
+
+            if (event.key === "d" && window.devCode === "iam") {
+                window.devCode = "iamd";
+                return;
+            }
+
+            if (event.key === "e" && window.devCode === "iamd") {
+                window.devCode = "iamde";
+                return;
+            }
+
+            if (event.key === "v" && window.devCode === "iamde") {
+
+                window.devCode = "";
+
+                alert("Developer mode unlocked. 🐒");
+
+                window.location.href = "dev.html";
+
+                return;
+            }
+
+            window.devCode = "";
+
+        });
+    </script>
         }
     </script>
 
