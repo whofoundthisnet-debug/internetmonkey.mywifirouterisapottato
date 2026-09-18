@@ -49,7 +49,14 @@
     pointer-events: none;
     transform: translate(-50%, -50%);
 }
-
+ #arm {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #8b5a2b;
+    pointer-events: none;
+    transform-origin: center right;
+}
 .pixel {
     width: 4px;
     height: 4px;
@@ -64,7 +71,7 @@
 
     <div id="game">
         <div id="title">OOPS, I BROKE IT</div>
-
+     <div id="arm"></div>
      <div id="hand"></div>
     </div>
 
