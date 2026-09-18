@@ -73,40 +73,43 @@
 
 const handPattern = [
     "..............................",
-    "..............................",
-    "..................KK..........",
-    "..................KK..........",
-    "..................KK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK..........",
-    ".................KKK.........."
+    "...................KK.........",
+    "...................KK.........",
+    "...................KK.........",
+    "..................KKK.........",
+    "..................KKK.........",
+    ".................KKKK.........",
+    ".................KKKK.........",
+    ".................KKKK.........",
+    ".................KKKK.........",
+    ".................KKKK.........",
+    ".................KKKK.........",
+    ".................KKKK.........",
+    ".................KKKK.........",
+    "................KKKKK.........",
+    "................KKKKK.........",
+    "................KKKKK.........",
+    "...............KKKKKK.........",
+    "..............KKKKKKK.........",
+    ".............KKKKKKKK.........",
+    "............KKKKKKKKK.........",
+    "...........KKKKKKKKKK.........",
+    "..........KKKKKKKKKKK.........",
+    ".........KKKKKKKKKKKK.........",
+    "........KKKKKKKKKKKKK.........",
+    ".......KKKKKKKKKKKKKK.........",
+    "......KKKKKKKKKKKKKKK.........",
+    ".....KKKKKKKKKKKKKKKK.........",
+    "....KKKKKKKKKKKKKKKKK.........",
+    "...KKKKKKKKKKKKKKKKKK........."
 ];
+
+hand.innerHTML = "";
 
 handPattern.forEach(row => {
     [...row].forEach(type => {
         const pixel = document.createElement("span");
+
         pixel.className = "pixel";
 
         if (type === "K") {
@@ -117,10 +120,39 @@ handPattern.forEach(row => {
     });
 });
 
-document.addEventListener("mousemove", event => {
-    hand.style.left = event.clientX + "px";
-    hand.style.top = event.clientY + "px";
-});
+const maxReach = 500;
+
+function moveHand(event) {
+
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+
+    const startX = window.innerWidth - 80;
+    const startY = window.innerHeight - 80;
+
+    const dx = mouseX - startX;
+    const dy = mouseY - startY;
+
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    let handX = mouseX;
+    let handY = mouseY;
+
+    if (distance > maxReach) {
+        const angle = Math.atan2(dy, dx);
+
+        handX = startX + Math.cos(angle) * maxReach;
+        handY = startY + Math.sin(angle) * maxReach;
+    }
+
+    hand.style.left = handX + "px";
+    hand.style.top = handY + "px";
+}
+
+hand.style.left = (window.innerWidth - 80) + "px";
+hand.style.top = (window.innerHeight - 80) + "px";
+
+document.addEventListener("mousemove", moveHand);
     </script>
 
 </body>
