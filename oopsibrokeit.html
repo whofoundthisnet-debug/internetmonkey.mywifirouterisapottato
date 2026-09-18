@@ -36,6 +36,13 @@
             font-size: 28px;
             letter-spacing: 2px;
         }
+
+        #hand {
+            position: absolute;
+            font-size: 32px;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 
@@ -43,7 +50,18 @@
 
     <div id="game">
         <div id="title">OOPS, I BROKE IT</div>
+
+        <div id="hand">🖐️</div>
     </div>
+
+    <script>
+        const hand = document.getElementById("hand");
+
+        document.addEventListener("mousemove", function(event) {
+            hand.style.left = event.clientX + "px";
+            hand.style.top = event.clientY + "px";
+        });
+    </script>
 
 </body>
 </html>
