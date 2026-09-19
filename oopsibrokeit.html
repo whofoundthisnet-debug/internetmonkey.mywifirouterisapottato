@@ -140,6 +140,15 @@ function moveHand(event) {
     const startY = window.innerHeight - 80;
     const armX = window.innerWidth - 120;
     const armY = window.innerHeight - 120;
+    const armDx = handX - armX;
+const armDy = handY - armY;
+
+let armAngle = Math.atan2(armDx, -armDy);
+
+const maxAngle = Math.PI / 3;
+armAngle = Math.max(-maxAngle, Math.min(maxAngle, armAngle));
+
+arm.style.transform = `rotate(${armAngle}rad)`;
     const dx = mouseX - startX;
     const dy = mouseY - startY;
 
