@@ -80,7 +80,7 @@
     </header>
 
     <main>
-        <div class="welcome"><div class="monkey">🐒</div>
+        <div class="welcome"><div class="monkey" id="monkey">🐒</div>
             <h2>WELCOME TO INTERNETMONKEY</h2>
 
             <p>
@@ -185,7 +185,29 @@
         });
     </script>
         }
-    </script>
+<script>
+const monkey = document.getElementById("monkey");
+
+const emojis = ["🪨", "💣", "🧨", "🪓", "🪛", "🔩", "🔫", "🔪", "⚔️", "🪫", "🔋", "📉", "📍"];
+
+monkey.addEventListener("click", function() {
+    monkey.style.transition = "transform 1s ease-in";
+    monkey.style.transform = "translateX(100vw)";
+
+    setTimeout(function() {
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        monkey.textContent = "🐒 " + randomEmoji;
+
+        monkey.style.transition = "none";
+        monkey.style.transform = "translateX(-100vw)";
+
+        setTimeout(function() {
+            monkey.style.transition = "transform 1s ease-out";
+            monkey.style.transform = "translateX(0)";
+        }, 50);
+    }, 1000);
+});
+</script>
 
 </body>
 </html>
