@@ -6,6 +6,17 @@
     <title>internetmonkey.mywifirouterisapottato</title>
 
     <style>
+          .emoji-object {
+                 position: fixed;
+                 font-size: 40px;
+                 cursor: grab;
+                 user-select: none;
+                 z-index: 1000;
+}
+
+.emoji-object:active {
+    cursor: grabbing;
+}
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -196,18 +207,101 @@ monkey.addEventListener("click", function() {
 
     setTimeout(function() {
         const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-        monkey.textContent = "🐒 " + randomEmoji;
 
         monkey.style.transition = "none";
         monkey.style.transform = "translateX(-100vw)";
+        monkey.textContent = "🐒";
 
         setTimeout(function() {
             monkey.style.transition = "transform 1s ease-out";
             monkey.style.transform = "translateX(0)";
+
+            setTimeout(function() {
+                createEmoji(randomEmoji);
+            }, 1000);
+
         }, 50);
+
     }, 1000);
 });
-</script>
 
+
+function createEmoji(emoji) {
+    const object = document.createElement("div");
+
+    object.className = "emoji-object";
+    object.textContent = emoji;
+
+    object.style.left = Math.random() * (window.innerWidth - 60) + "px";
+    object.style.top = "100px";
+
+    document.body.appendChild(object);
+
+    let x = parseFloat(object.style.left);
+    let y = 100;
+
+    let velocityX = (Math.random() - 0.5) * 8;
+    let velocityY = 0;
+
+    let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    object.addEventListener("mousedown", function(event) {
+        dragging = true;
+
+        offsetX = event.clientX - x;
+        offsetY = event.clientY - y;
+
+        velocityX = 0;
+        velocityY = 0;
+    });
+
+    document.addEventListener("mousemove", function(event) {
+        if (!dragging) return;
+
+        x = event.clientX - offsetX;
+        y = event.clientY - offsetY;
+
+        object.style.left = x + "px";
+        object.style.top = y + "px";
+    });
+
+    document.addEventListener("mouseup", function() {
+        dragging = false;
+    });
+
+    function physics() {
+        if (!dragging) {
+            velocityY += 0.5;
+
+            x += velocityX;
+            y += velocityY;
+
+            if (x <= 0) {
+                x = 0;
+                velocityX *= -0.8;
+            }
+
+            if (x >= window.innerWidth - 50) {
+                x = window.innerWidth - 50;
+                velocityX *= -0.8;
+            }
+
+            if (y >= window.innerHeight - 50) {
+                y = window.innerHeight - 50;
+                velocityY *= -0.7;
+            }
+
+            object.style.left = x + "px";
+            object.style.top = y + "px";
+        }
+
+        requestAnimationFrame(physics);
+    }
+
+    physics();
+}
+</script>
 </body>
 </html>
