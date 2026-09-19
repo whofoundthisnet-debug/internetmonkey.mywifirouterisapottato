@@ -138,7 +138,8 @@ function moveHand(event) {
 
     const startX = window.innerWidth - 80;
     const startY = window.innerHeight - 80;
-
+    const armX = window.innerWidth - 120;
+    const armY = window.innerHeight - 120;
     const dx = mouseX - startX;
     const dy = mouseY - startY;
 
@@ -156,8 +157,8 @@ function moveHand(event) {
 
     hand.style.left = handX + "px";
     hand.style.top = handY + "px";
-   arm.style.left = (handX - 100) + "px";
-   arm.style.top = (handY - 20) + "px";
+    arm.style.right = "120px";
+    arm.style.bottom = "120px";
     const armDx = handX - startX;
 const armDy = handY - startY;
 const armDistance = Math.sqrt(armDx * armDx + armDy * armDy);
