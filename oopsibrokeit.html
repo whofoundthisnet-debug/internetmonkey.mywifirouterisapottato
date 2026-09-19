@@ -156,13 +156,13 @@ function moveHand(event) {
 
     hand.style.left = handX + "px";
     hand.style.top = handY + "px";
-    arm.style.left = startX + "px";
-    arm.style.top = startY + "px";
+   arm.style.left = (handX - 100) + "px";
+   arm.style.top = (handY - 20) + "px";
     const armDx = handX - startX;
 const armDy = handY - startY;
 const armDistance = Math.sqrt(armDx * armDx + armDy * armDy);
 const armAngle = Math.atan2(armDy, armDx);
-    arm.style.transform = `rotate(${armAngle}rad)`;
+    
 }
 
 hand.style.left = (window.innerWidth - 80) + "px";
